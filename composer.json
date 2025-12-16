@@ -1,0 +1,31 @@
+{
+  "name": "dmt-software/address-abbreviation",
+  "description": "Abbreviate addresses while keeping the meaning intact.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bas de Mes",
+      "email": "bas@dmt-software.nl"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=8.3",
+    "ext-mbstring": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "DMT\\Address\\Abbreviation\\": "src/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12.5"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "DMT\\Test\\Address\\Abbreviation\\": "tests/"
+    }
+  }
+}
