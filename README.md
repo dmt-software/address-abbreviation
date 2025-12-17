@@ -1,6 +1,6 @@
 # Address Abbreviation
 
-Abbreviate address parts while maintaining their meaning to accommodate systems that are limited in the address length.  
+Abbreviate address components while preserving their meaning to accommodate systems with limited address length.
 
 ## Installation
 
