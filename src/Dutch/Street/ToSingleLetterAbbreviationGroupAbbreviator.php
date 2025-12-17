@@ -6,7 +6,7 @@ use DMT\Address\Abbreviation\AbbreviationCheckerInterface;
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 use DMT\Address\Abbreviation\General\AbbreviationGroupAbbreviator;
 
-final class ToSingleLetterAbbreviationGroupAbbreviator implements AbbreviatorInterface, AbbreviationCheckerInterface
+final readonly class ToSingleLetterAbbreviationGroupAbbreviator implements AbbreviatorInterface, AbbreviationCheckerInterface
 {
     private const array STREET_ABBREVIATIONS = [
         '~^(.* )(\S*(?<=\w).?)(kan|stg|kd|sngl|hvn|gr|plnts|plts|parkeerterr|industrieterr|blvd|pd)\b~i',
@@ -16,6 +16,7 @@ final class ToSingleLetterAbbreviationGroupAbbreviator implements AbbreviatorInt
         '~^(.* )(\S*(?<=\w).?)(p)?ln\b~i',
         '~^(.* )(\S*(?<=\w).?)(pl)?dr\b~i',
         '~^(.* )(\S*(?<=\w).?)(bglw)?prk\b~i',
+        '~(?<=kan|stg|kd|sngl|hvn|gr|plnts|plts|parkeerterr|industrieterr|blvd|pd|dr|wg|dk|str|ln|prk) (.* ).*$~i',
     ];
 
     public function __construct(

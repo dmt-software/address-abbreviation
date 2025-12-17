@@ -27,6 +27,8 @@ class AbbreviationGroupFactoryTest extends TestCase
             ['Burgemeester W. van Eertenstraat', 'Burg W van Eertenstraat'],
             ['E.R. Westerbeek van Eertenstraat', 'E R W v Eertenstr'],
             ['Burgemeester E.R. Westerbeek van Eertenstraat', 'Burg E R W v Eertenstr'],
+            ['Burgemeester Baron van Voorst tot Voorstweg', 'Burg Bar v V t Voorstwg'],
+            ['Wethouder F.E. Meerburg sr. kade', 'Weth F E Meerburg sr kd']
         ];
     }
 }

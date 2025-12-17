@@ -38,6 +38,7 @@ class ToSingleLetterAbbreviationGroupAbbreviatorTest extends TestCase
             ['Hoogewg ad duinen', 'Hoogewg ad duinen'],
             ['\'s-Heer Hendrikskinderenstr', '\'s-H Hendrikskinderenstr'],
             ['d\'Ablaing v Giessenburgstr', 'd\'A v Giessenburgstr'],
+            ['Ln vd landinrichtingscommissie Duiven-Westervoort', 'Ln vd l Duiven-Westervoort']
         ];
     }
 }
