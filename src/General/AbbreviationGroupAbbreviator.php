@@ -4,7 +4,7 @@ namespace DMT\Address\Abbreviation\General;
 
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-final readonly class AbbreviatorGroupAbbreviator implements AbbreviatorInterface
+final readonly class AbbreviationGroupAbbreviator implements AbbreviatorInterface
 {
     public function __construct(
         private array $abbreviators,

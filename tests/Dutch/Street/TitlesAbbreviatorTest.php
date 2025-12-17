@@ -2,7 +2,7 @@
 
 namespace DMT\Test\Address\Abbreviation\Dutch\Street;
 
-use DMT\Address\Abbreviation\Dutch\Street\TitlesAbbreviation;
+use DMT\Address\Abbreviation\Dutch\Street\TitlesAbbreviator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -11,7 +11,7 @@ class TitlesAbbreviatorTest extends TestCase
     #[DataProvider('addressProvider')]
     public function testAbbreviate(string $street, string $expected): void
     {
-        $this->assertEquals($expected, (new TitlesAbbreviation())->abbreviate($street));
+        $this->assertEquals($expected, (new TitlesAbbreviator())->abbreviate($street));
     }
 
     public static function addressProvider(): iterable

@@ -5,7 +5,7 @@ namespace DMT\Address\Abbreviation\Dutch\Street;
 use DMT\Address\Abbreviation\AbbreviationCheckerInterface;
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-final class TitlesAbbreviation implements AbbreviatorInterface, AbbreviationCheckerInterface
+final class TitlesAbbreviator implements AbbreviatorInterface, AbbreviationCheckerInterface
 {
     private const array REPLACEMENTS = [
         '~^([^ ]+ )?(lt|luitenant)(-| )generaal ~i' => '$1Lt$3Gen ',

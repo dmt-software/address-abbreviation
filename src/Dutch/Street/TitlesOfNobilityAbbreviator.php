@@ -5,7 +5,7 @@ namespace DMT\Address\Abbreviation\Dutch\Street;
 use DMT\Address\Abbreviation\AbbreviationCheckerInterface;
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class TitlesOfNobilityAbbreviation implements AbbreviatorInterface, AbbreviationCheckerInterface
+class TitlesOfNobilityAbbreviator implements AbbreviatorInterface, AbbreviationCheckerInterface
 {
     private const array REPLACEMENTS = [
         '~^([^ ]+ )?aartshertog ~i' => '$1Aartsh ',

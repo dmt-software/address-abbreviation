@@ -5,7 +5,7 @@ namespace DMT\Address\Abbreviation\Dutch\Street;
 use DMT\Address\Abbreviation\AbbreviationCheckerInterface;
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-final class DirectionalIndicationAbbreviation implements AbbreviatorInterface, AbbreviationCheckerInterface
+final class DirectionalIndicationAbbreviator implements AbbreviatorInterface, AbbreviationCheckerInterface
 {
     private const array REPLACEMENTS = [
         '~\bnoord(zijde)?\b~i' => 'N',
@@ -40,6 +40,6 @@ final class DirectionalIndicationAbbreviation implements AbbreviatorInterface, A
      */
     public function isAbbreviated(string $word): bool
     {
-        return !!preg_match('~(N|O|Z|W)z?$~', $word);
+        return !!preg_match('~[NOZW]z?$~', $word);
     }
 }

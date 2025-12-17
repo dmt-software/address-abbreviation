@@ -5,7 +5,7 @@ namespace DMT\Address\Abbreviation\Dutch\Street;
 use DMT\Address\Abbreviation\AbbreviationCheckerInterface;
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-final class AdjectiveAbbreviation implements AbbreviatorInterface, AbbreviationCheckerInterface
+final class AdjectiveAbbreviator implements AbbreviatorInterface, AbbreviationCheckerInterface
 {
     private const array REPLACEMENTS = [
         '~^gedempte\b~i' => 'Ged',

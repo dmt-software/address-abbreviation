@@ -5,7 +5,7 @@ namespace DMT\Address\Abbreviation\Dutch\Street;
 use DMT\Address\Abbreviation\AbbreviationCheckerInterface;
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-final class NumeralAbbreviation implements AbbreviatorInterface, AbbreviationCheckerInterface
+final class NumeralAbbreviator implements AbbreviatorInterface, AbbreviationCheckerInterface
 {
     private const array REPLACEMENTS = [
         '~\b(een|(?-i)I(?i))\b~i' => '1',

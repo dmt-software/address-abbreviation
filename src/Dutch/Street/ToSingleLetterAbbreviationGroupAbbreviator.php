@@ -4,8 +4,9 @@ namespace DMT\Address\Abbreviation\Dutch\Street;
 
 use DMT\Address\Abbreviation\AbbreviationCheckerInterface;
 use DMT\Address\Abbreviation\AbbreviatorInterface;
+use DMT\Address\Abbreviation\General\AbbreviationGroupAbbreviator;
 
-class ToSingleLetterAbbreviation implements AbbreviatorInterface, AbbreviationCheckerInterface
+final class ToSingleLetterAbbreviationGroupAbbreviator implements AbbreviatorInterface, AbbreviationCheckerInterface
 {
     private const array STREET_ABBREVIATIONS = [
         '~^(.* )(\S*(?<=\w).?)(kan|stg|kd|sngl|hvn|gr|plnts|plts|parkeerterr|industrieterr|blvd|pd)\b~i',
@@ -18,9 +19,10 @@ class ToSingleLetterAbbreviation implements AbbreviatorInterface, AbbreviationCh
     ];
 
     public function __construct(
-        /** @var array<AbbreviationCheckerInterface> */
-        private array $abbreviatorCheckers = [],
+        /** @var array<AbbreviatorInterface> */
+        private array $abbreviators = [],
         private int $maxLength = 24,
+        private true $cumulative = true
     ) {
     }
 
@@ -31,6 +33,9 @@ class ToSingleLetterAbbreviation implements AbbreviatorInterface, AbbreviationCh
      */
     public function abbreviate(string $phrase): string
     {
+        // apply all abbreviators cumulative on the phrase.
+        $phrase = (new AbbreviationGroupAbbreviator(...get_object_vars($this)))->abbreviate($phrase);
+
         $matches = [];
         foreach (self::STREET_ABBREVIATIONS as $pattern) {
             if (!preg_match($pattern, $phrase, $matches)) {
@@ -66,8 +71,12 @@ class ToSingleLetterAbbreviation implements AbbreviatorInterface, AbbreviationCh
             return true;
         }
 
-        foreach ($this->abbreviatorCheckers as $abbreviationChecker) {
-            if ($abbreviationChecker->isAbbreviated($word)) {
+        foreach ($this->abbreviators as $abbreviator) {
+            if (!$abbreviator instanceof AbbreviationCheckerInterface) {
+                continue;
+            }
+
+            if ($abbreviator->isAbbreviated($word)) {
                 return true;
             }
         }

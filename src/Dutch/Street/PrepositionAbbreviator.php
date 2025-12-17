@@ -5,7 +5,7 @@ namespace DMT\Address\Abbreviation\Dutch\Street;
 use DMT\Address\Abbreviation\AbbreviationCheckerInterface;
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-final class PrepositionAbbreviation implements AbbreviatorInterface, AbbreviationCheckerInterface
+final class PrepositionAbbreviator implements AbbreviatorInterface, AbbreviationCheckerInterface
 {
     private const array REPLACEMENTS = [
         '~%s(d)e van de(r|)\b~i' => '$1vd',
@@ -19,10 +19,10 @@ final class PrepositionAbbreviation implements AbbreviatorInterface, Abbreviatio
     private array $lookup;
     private array $replace;
 
-    public function __construct(bool $matchInside = false)
+    public function __construct(bool $matchInsideOnly = false)
     {
         $this->lookup = array_map(
-            fn(string $pattern)  => sprintf($pattern, $matchInside ? '(?<=.)\b' : '^'),
+            fn(string $pattern)  => sprintf($pattern, $matchInsideOnly ? '(?<=.)\b' : '\b'),
             array_keys(self::REPLACEMENTS)
         );
         $this->replace = array_values(self::REPLACEMENTS);
