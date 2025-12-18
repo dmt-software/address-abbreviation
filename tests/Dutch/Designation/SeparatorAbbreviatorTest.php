@@ -27,6 +27,8 @@ class SeparatorAbbreviatorTest extends TestCase
             ['C-D', 'C D'],
             ['4.20', '4-20'],
             [' 13  B', '13 B'],
+            ['12 - C08', '12 C08'],
+            ['2-10.4', '2-10 4'],
             // error in designation: expect addition only
             ['-132', '-132'],
             ['.123', '.123'],

@@ -86,12 +86,10 @@ class AbbreviationGroupFactory
     public function getDesignationBAGStandardAbbreviationGroup(): AbbreviatorInterface
     {
         return new AbbreviationGroupAbbreviator([
-            new AbbreviationGroupAbbreviator([
-                new SeparatorAbbreviator(),
-                new TermAbbreviator(),
-                new AdditionAbbreviator(),
-                new BAGStandardAbbreviator()
-            ], maxLength: 1, cumulative: true)
-        ], maxLength: 10);
+            new SeparatorAbbreviator(),
+            new TermAbbreviator(),
+            new AdditionAbbreviator(),
+            new BAGStandardAbbreviator()
+        ], maxLength: 1, cumulative: true);
     }
 }

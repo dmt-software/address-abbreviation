@@ -13,9 +13,9 @@ class BAGStandardAbbreviator implements AbbreviatorInterface
      */
     public function abbreviate(string $phrase): string
     {
-        $match = [];
-        if (preg_match('~^(([A-Z]|1[0-9]{,4})([ \-][A-Z0-9 ])?)\b~', $phrase, $match)) {
-            return $match[1];
+        $m = [];
+        if (preg_match('~^(([A-Z]|[1-9][0-9]{0,4})([ \-](([0-9 ](?=\d|\b)){3,4}(?! )|([A-Z0-9]{1,4})))?)\b~i', $phrase, $m)) {
+            return $m[1];
         }
 
         return $phrase;
