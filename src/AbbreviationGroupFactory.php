@@ -2,6 +2,10 @@
 
 namespace DMT\Address\Abbreviation;
 
+use DMT\Address\Abbreviation\Dutch\Designation\AdditionAbbreviator;
+use DMT\Address\Abbreviation\Dutch\Designation\BAGStandardAbbreviator;
+use DMT\Address\Abbreviation\Dutch\Designation\SeparatorAbbreviator;
+use DMT\Address\Abbreviation\Dutch\Designation\TermAbbreviator;
 use DMT\Address\Abbreviation\Dutch\Street\AdjectiveAbbreviator;
 use DMT\Address\Abbreviation\Dutch\Street\DirectionalIndicationAbbreviator;
 use DMT\Address\Abbreviation\Dutch\Street\NumeralAbbreviator;
@@ -62,7 +66,7 @@ class AbbreviationGroupFactory
                     $adjectiveAbbreviation,
                     $prepositionAbbreviation,
                     $titleOfNobilityAbbreviation,
-                    $prepositionAbbreviation
+                    $prepositionInsideAbbreviation
                 ], cumulative: true),
             ]),
             // Extra abbreviations (rule 11)
@@ -74,8 +78,20 @@ class AbbreviationGroupFactory
                 $adjectiveAbbreviation,
                 $prepositionAbbreviation,
                 $titleOfNobilityAbbreviation,
-                $prepositionAbbreviation,
+                $prepositionInsideAbbreviation,
             ]),
         ], cumulative: true);
+    }
+
+    public function getDesignationBAGStandardAbbreviationGroup(): AbbreviatorInterface
+    {
+        return new AbbreviationGroupAbbreviator([
+            new AbbreviationGroupAbbreviator([
+                new SeparatorAbbreviator(),
+                new TermAbbreviator(),
+                new AdditionAbbreviator(),
+                new BAGStandardAbbreviator()
+            ], maxLength: 1, cumulative: true)
+        ], maxLength: 10);
     }
 }
