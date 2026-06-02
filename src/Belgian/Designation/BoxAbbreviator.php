@@ -6,7 +6,7 @@ namespace DMT\Address\Abbreviation\Belgian\Designation;
 
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class BoxAbbreviator implements AbbreviatorInterface
+final class BoxAbbreviator implements AbbreviatorInterface
 {
     private const array REPLACEMENTS = [
         '~\b(boite|boîte)~ui' => 'bte',

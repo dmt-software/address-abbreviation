@@ -6,7 +6,7 @@ namespace DMT\Address\Abbreviation\Belgian\Street;
 
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class TypeNameAbbreviator implements AbbreviatorInterface
+final class TypeNameAbbreviator implements AbbreviatorInterface
 {
     private const array REPLACEMENTS = [
         '~\bavenue(?= )~i' =>  'Av.',

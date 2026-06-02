@@ -7,7 +7,7 @@ namespace DMT\Address\Abbreviation\Belgian\Designation;
 use Closure;
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class AdditionAbbreviator implements AbbreviatorInterface
+final class AdditionAbbreviator implements AbbreviatorInterface
 {
     /** @var array<string, Closure> */
     private array $replaceCallbacks;

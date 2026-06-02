@@ -6,7 +6,7 @@ namespace DMT\Address\Abbreviation\Dutch\Designation;
 
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class SeparatorAbbreviator implements AbbreviatorInterface
+final class SeparatorAbbreviator implements AbbreviatorInterface
 {
     private const array REPLACEMENTS = [
         '~((?<!^)[^A-Z0-9 ]{1,})~i' => ' ',

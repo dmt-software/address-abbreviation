@@ -11,7 +11,7 @@ use DMT\Address\Abbreviation\Dutch\Street as DutchStreet;
 use DMT\Address\Abbreviation\General\AbbreviationGroupAbbreviator;
 use DMT\Address\Abbreviation\General\PunctuationAbbreviator;
 
-class AbbreviationGroupFactory
+final class AbbreviationGroupFactory
 {
     /**
      * Abbreviate Belgian street names.

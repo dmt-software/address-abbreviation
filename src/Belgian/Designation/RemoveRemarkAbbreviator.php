@@ -6,7 +6,7 @@ namespace DMT\Address\Abbreviation\Belgian\Designation;
 
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class RemoveRemarkAbbreviator implements AbbreviatorInterface
+final class RemoveRemarkAbbreviator implements AbbreviatorInterface
 {
     private const array REPLACEMENTS = [
         '~((box|bus|bte)\s[a-z0-9]+)\b(.*)$~i' => '$1',

@@ -6,7 +6,7 @@ namespace DMT\Address\Abbreviation\Belgian\Designation;
 
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class InvalidCharactersAbbreviator implements AbbreviatorInterface
+final class InvalidCharactersAbbreviator implements AbbreviatorInterface
 {
     /**
      * @inheritDoc

@@ -6,7 +6,7 @@ namespace DMT\Address\Abbreviation\General;
 
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class WhitespaceAbbreviator implements AbbreviatorInterface
+final class WhitespaceAbbreviator implements AbbreviatorInterface
 {
     /**
      * {@inheritDoc}

@@ -6,7 +6,7 @@ namespace DMT\Address\Abbreviation\Dutch\Designation;
 
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class AdditionAbbreviator implements AbbreviatorInterface
+final class AdditionAbbreviator implements AbbreviatorInterface
 {
     private const array REPLACEMENTS = [
         '~^([^ \-]+[ \-])(rood|rd)\b~i' => '$1RD',

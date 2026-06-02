@@ -6,7 +6,7 @@ namespace DMT\Address\Abbreviation\Dutch\Designation;
 
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class TermAbbreviator implements AbbreviatorInterface
+final class TermAbbreviator implements AbbreviatorInterface
 {
     private const array REPLACEMENTS = [
         '~(begane grond|bg)~i' => 'BG',

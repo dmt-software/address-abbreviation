@@ -6,7 +6,7 @@ namespace DMT\Address\Abbreviation\Dutch\Designation;
 
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-class BAGStandardAbbreviator implements AbbreviatorInterface
+final class BAGStandardAbbreviator implements AbbreviatorInterface
 {
     /**
      * {@inheritDoc}
