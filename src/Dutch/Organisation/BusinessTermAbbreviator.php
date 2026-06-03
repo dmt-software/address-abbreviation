@@ -19,6 +19,7 @@ final readonly class BusinessTermAbbreviator implements AbbreviatorInterface
         '~(h)andel(?![\pL\pN])~iu' => '$1dl',
         '~(i)ndustrie(?![\pL\pN])~iu' => '$1nd',
         '~(k)antoor(?![\pL\pN])~iu' => '$1ant',
+        '~(m)aatschappij(?![\pL\pN])~iu' => '$1ij',
         '~(?<![\pL\pN])(A)utomatisering(?![\pL\pN])~iu' => '$1utom',
         '~(?<![\pL\pN])(V)erzekeringen(?![\pL\pN])~iu' => '$1erz',
         '~(?<![\pL\pN])(F)inanci(ële|eel)?(?![\pL\pN])~iu' => '$1in',
