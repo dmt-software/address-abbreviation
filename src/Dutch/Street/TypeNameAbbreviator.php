@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace DMT\Address\Abbreviation\Dutch\Street;
 
+use DMT\Address\Abbreviation\AbbreviationCheckerInterface;
 use DMT\Address\Abbreviation\AbbreviatorInterface;
 
-final class TypeNameAbbreviator implements AbbreviatorInterface
+final class TypeNameAbbreviator implements AbbreviatorInterface, AbbreviationCheckerInterface
 {
     private const REPLACEMENTS = [
         '~(?=(\b|.))(b)oulevard(\b|$)~i' => '$2lvd',
@@ -46,7 +47,14 @@ final class TypeNameAbbreviator implements AbbreviatorInterface
     ];
 
     private const array ABBREVIATIONS = [
-
+        '~^(.* )(\S*(?<=\w).?)(kan|stg|kd|sngl|hvn|gr|plnts|plts|parkeerterr|industrieterr|blvd|pd)\b~i',
+        '~^(.* )(\S*(?<=\w).?)(pldr)?dk\b~i',
+        '~^(.* )(\S*(?<=\w).?)(dw)?str\b~i',
+        '~^(.* )(\S*(?<=\w).?)(dw|pldr|str)?wg\b~i',
+        '~^(.* )(\S*(?<=\w).?)(p)?ln\b~i',
+        '~^(.* )(\S*(?<=\w).?)(pl)?dr\b~i',
+        '~^(.* )(\S*(?<=\w).?)(bglw)?prk\b~i',
+        '~(?<=kan|stg|kd|sngl|hvn|gr|plnts|plts|parkeerterr|industrieterr|blvd|pd|dr|wg|dk|str|ln|prk) (.* ).*$~i',
     ];
 
     /** @var array<string, callable> */
@@ -76,5 +84,16 @@ final class TypeNameAbbreviator implements AbbreviatorInterface
     public function abbreviate(string $phrase): string
     {
         return preg_replace_callback_array($this->replacements, $phrase);
+    }
+
+    public function isAbbreviated(string $word): bool
+    {
+        foreach (self::ABBREVIATIONS as $abbreviation => $regex) {
+            if (preg_match($regex, $word)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

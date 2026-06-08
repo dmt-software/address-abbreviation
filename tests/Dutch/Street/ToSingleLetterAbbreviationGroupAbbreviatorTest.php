@@ -11,6 +11,7 @@ use DMT\Address\Abbreviation\Dutch\Street\PrepositionAbbreviator;
 use DMT\Address\Abbreviation\Dutch\Street\TitlesAbbreviator;
 use DMT\Address\Abbreviation\Dutch\Street\TitlesOfNobilityAbbreviator;
 use DMT\Address\Abbreviation\Dutch\Street\ToSingleLetterAbbreviationGroupAbbreviator;
+use DMT\Address\Abbreviation\Dutch\Street\TypeNameAbbreviator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -20,6 +21,7 @@ class ToSingleLetterAbbreviationGroupAbbreviatorTest extends TestCase
     public function testAbbreviate(string $address, string $expected): void
     {
         $checkers = [
+            new TypeNameAbbreviator(),
             new TitlesAbbreviator(),
             new AdjectiveAbbreviator(),
             new NumeralAbbreviator(),
@@ -30,7 +32,7 @@ class ToSingleLetterAbbreviationGroupAbbreviatorTest extends TestCase
 
         $this->assertEquals(
             $expected,
-            (new ToSingleLetterAbbreviationGroupAbbreviator($checkers))->abbreviate($address)
+            (new ToSingleLetterAbbreviationGroupAbbreviator($checkers, maxLength: 24))->abbreviate($address)
         );
     }
 
@@ -38,12 +40,12 @@ class ToSingleLetterAbbreviationGroupAbbreviatorTest extends TestCase
     {
         return [
             ['Baron van Tuyll van Serooskerkenstr', 'Bar v T v Serooskerkenstr'],
-            ['Bovenwindse eilanden ln', 'B eilanden ln'],
-            ['Ged nieuwe grachtstr', 'Ged n grachtstr'],
-            ['Hoogewg ad duinen', 'Hoogewg ad duinen'],
+            ['Bovenwindse eilanden strwg', 'B eilanden strwg'],
+            ['Ged nieuwe grachtstr', 'Ged nieuwe grachtstr'],
             ['\'s-Heer Hendrikskinderenstr', '\'s-H Hendrikskinderenstr'],
             ['d\'Ablaing v Giessenburgstr', 'd\'A v Giessenburgstr'],
-            ['Ln vd landinrichtingscommissie Duiven-Westervoort', 'Ln vd l Duiven-Westervoort']
+            ['Ln vd landinrichtingscommissie Duiven-Westervoort', 'Ln vd l Duiven-Westervoort'],
+            ['Poort v Midden Gelderland Groen', 'P v M Gelderland Groen']
         ];
     }
 }

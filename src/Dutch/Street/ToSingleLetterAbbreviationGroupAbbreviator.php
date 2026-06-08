@@ -12,17 +12,6 @@ final readonly class ToSingleLetterAbbreviationGroupAbbreviator implements
     AbbreviatorInterface,
     AbbreviationCheckerInterface
 {
-    private const array STREET_ABBREVIATIONS = [
-        '~^(.* )(\S*(?<=\w).?)(kan|stg|kd|sngl|hvn|gr|plnts|plts|parkeerterr|industrieterr|blvd|pd)\b~i',
-        '~^(.* )(\S*(?<=\w).?)(pldr)?dk\b~i',
-        '~^(.* )(\S*(?<=\w).?)(dw)?str\b~i',
-        '~^(.* )(\S*(?<=\w).?)(dw|pldr|str)?wg\b~i',
-        '~^(.* )(\S*(?<=\w).?)(p)?ln\b~i',
-        '~^(.* )(\S*(?<=\w).?)(pl)?dr\b~i',
-        '~^(.* )(\S*(?<=\w).?)(bglw)?prk\b~i',
-        '~(?<=kan|stg|kd|sngl|hvn|gr|plnts|plts|parkeerterr|industrieterr|blvd|pd|dr|wg|dk|str|ln|prk) (.* ).*$~i',
-    ];
-
     public function __construct(
         /** @var array<AbbreviatorInterface> */
         private array $abbreviators = [],
@@ -41,27 +30,27 @@ final readonly class ToSingleLetterAbbreviationGroupAbbreviator implements
         // apply all abbreviators cumulative on the phrase.
         $phrase = (new AbbreviationGroupAbbreviator(...get_object_vars($this)))->abbreviate($phrase);
 
-        $matches = [];
-        foreach (self::STREET_ABBREVIATIONS as $pattern) {
-            if (!preg_match($pattern, $phrase, $matches)) {
-                continue;
-            }
+        $words = explode(' ', $phrase);
+        $count = count($words);
 
-            $words = explode(' ', $matches[1]);
-
-            foreach ($words as &$word) {
-                if ($this->isAbbreviated($word)) {
-                    continue;
-                }
-
-                $word = preg_replace('~^((([a-z]\')?[a-z])|(\'[a-z][^a-z]?[a-z])|[a-z]).*$~i', '$1', $word);
-            }
-
-            $phrase = str_replace($matches[1], implode(' ', $words), $phrase);
-
+        for ($i = 0; $i < $count - 1; $i++) {
             if (mb_strlen($phrase) <= $this->maxLength) {
                 return $phrase;
             }
+
+            $word = &$words[$i];
+            $nextWord = $words[$i + 1] ?? '';
+
+            $isStreet = '~^(kan|stg|kd|pldrkd|sngl|hvn|gr|plnts|plts|parkeerterr|industrieterr|blvd|pd|dr|pldr|'
+                . 'dwwg|pldrwg|strwg|wg|dk|dwstr|str|ln|pln|bglwprk|prk)$~i';
+
+            if (preg_match($isStreet, $word) || preg_match($isStreet, $nextWord) || $this->isAbbreviated($word)) {
+                continue;
+            }
+
+            $word = preg_replace('~^((([a-z]\')?[a-z])|(\'[a-z][^a-z]?[a-z])|[a-z]).*$~i', '$1', $word);
+
+            $phrase = implode(' ', $words);
         }
 
         return $phrase;
