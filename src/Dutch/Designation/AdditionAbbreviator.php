@@ -11,12 +11,12 @@ class AdditionAbbreviator implements AbbreviatorInterface
     private const array REPLACEMENTS = [
         '~^([^ \-]+[ \-])(rood|rd)\b~i' => '$1RD',
         '~^([^ \-]+[ \-])(zwart|zw)\b~i' => '$1ZW',
-        '~^([^ \-]+[ \-])(RD|ZW) ?([0-9]+)\b~' => '$1$2$3',
+        '~^([^ \-]+[ \-])(RD|ZW) ?([0-9]+)\b~' => '$1$2$3 ',
         '~^([^ \-]+[ \-])(bis|bs)\b~i' => '$1BIS',
-        '~^([^ \-]+[ \-])(bis|bs) ?([0-9]+)\b~i' => '$1BS$3',
-        '~^([^ \-]+[ \-])([A-Z]) ?(bis|bs)\b~i' => '$1$2BIS',
-        '~^([^ \-]+[ \-])([0-9]{1,2}) ?(bis|bs)\b~i' => '$1$2BS',
-        '~^([^ \-]+[ \-])([A-Z]) ?([0-9]{,3})\b~i' => '$1$2$3',
+        '~^([^ \-]+[ \-])(bis|bs) ?([0-9]+)\b~i' => '$1BS$3 ',
+        '~^([^ \-]+[ \-])([A-Z]) ?(bis|bs)\b~i' => '$1$2BIS ',
+        '~^([^ \-]+[ \-])([0-9]{1,2}) ?(bis|bs)\b~i' => '$1$2BS ',
+        '~^([^ \-]+[ \-])([A-Z]) ?([0-9]{,3})\b~i' => '$1$2$3 ',
     ];
 
     /**
@@ -30,6 +30,6 @@ class AdditionAbbreviator implements AbbreviatorInterface
             $phrase = preg_replace($regex, $replacement, $phrase);
         }
 
-        return $phrase;
+        return trim($phrase);
     }
 }

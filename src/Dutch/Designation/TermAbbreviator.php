@@ -9,9 +9,9 @@ use DMT\Address\Abbreviation\AbbreviatorInterface;
 class TermAbbreviator implements AbbreviatorInterface
 {
     private const array REPLACEMENTS = [
-        '~(begane grond|bg)~i' => 'BG',
-        '~(sous|souterrain)~i' => 'O',
-        '~(huis|hs)~i' => 'H',
+        '~\b(begane grond|bg)\b~i' => 'BG',
+        '~\b(sous|souterrain)\b~i' => 'O',
+        '~\b(huis|hs)\b~i' => 'H',
     ];
 
     /**
