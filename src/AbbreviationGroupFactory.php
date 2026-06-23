@@ -38,7 +38,7 @@ class AbbreviationGroupFactory
         $prepositionAbbreviation = new DutchStreet\PrepositionAbbreviator();
 
         return new AbbreviationGroupAbbreviator([
-            new AbbreviationGroupAbbreviator([$punctuationAbbreviation], cumulative: true),
+            new AbbreviationGroupAbbreviator([$punctuationAbbreviation], maxLength: $maxLength, cumulative: true),
             new AbbreviationGroupAbbreviator([
                 $titleAbbreviation,
                 $numeralAbbreviation,
@@ -53,8 +53,8 @@ class AbbreviationGroupFactory
                     $typeNameAbbreviation,
                     $adjectiveAbbreviation,
                     $prepositionAbbreviation,
-                ], cumulative: true)
-            ]),
+                ], maxLength: $maxLength, cumulative: true)
+            ], maxLength: $maxLength),
         ], maxLength: $maxLength);
     }
 
