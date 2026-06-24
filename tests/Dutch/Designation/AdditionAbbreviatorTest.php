@@ -25,7 +25,7 @@ final class AdditionAbbreviatorTest extends TestCase
             ['123 zw', '123 ZW'],
             ['123 RD 1', '123 RD1'],
             ['123 ZW 2', '123 ZW2'],
-            ['123 A 2', '123 A2'],
+            ['123 A 2', '123 A 2'],
             ['123 bis', '123 BIS'],
             ['123 bs', '123 BIS'],
             ['123 bis 1', '123 BS1'],

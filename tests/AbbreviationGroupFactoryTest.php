@@ -48,7 +48,7 @@ class AbbreviationGroupFactoryTest extends TestCase
             ['12 B', '12 B'],
             ['45 huis onderste bel', '45 H'],
             ['52 IIV', '52 IIV'],
-            ['4.20', '4-20'],
+            ['4.20', '4 20'],
             ['2 bis', '2 BIS'],
             ['100 begane grond', '100 BG'],
             ['8 rood 2', '8 RD2'],
@@ -56,10 +56,13 @@ class AbbreviationGroupFactoryTest extends TestCase
             ['75 zwart (onder)', '75 ZW'],
             ['4 A bis', '4 ABIS'],
             ['12 bis 04', '12 BS04'],
-            ['12-4.20', '12-4 20'],
-            ['12-4 eerste verdieping', '12-4'],
-            ['12-4 1e verdieping', '12-4'],
+            ['12.4-20', '12 4 20'],
+            ['12.4.20', '12 4 20'],
+            ['12 4-20', '12 4 20'],
+            ['12-4 eerste verdieping', '12 4'],
+            ['12-4 1e verdieping', '12 4 1e'],
             ['32 tussen 3 en 4', '32'],
+            ['2B-18', '2 B 18'],
         ];
     }
 }

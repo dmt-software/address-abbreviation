@@ -9,10 +9,11 @@ use DMT\Address\Abbreviation\AbbreviatorInterface;
 class SeparatorAbbreviator implements AbbreviatorInterface
 {
     private const array REPLACEMENTS = [
-        '~((?<!^)[^A-Z0-9 ]{1,})~i' => ' ',
+        '~((?<!^)[^A-Z0-9\- ]{1,})~i' => ' ',
         '~([ ]{2,})~i' => ' ',
+        '~((?<!^)(\s?-\s?))~i' => ' ',
         '~^([A-Z])([^A-Z0-9 ](?=[A-Z0-9]))~i' => '$1 ',
-        '~^([0-9]+)([^A-Z0-9\-](?=[0-9]))~i' => '$1-',
+        '~^([0-9]+)([^A-Z0-9\- ](?=[0-9]))~i' => '$1 ',
         '~^([0-9]+)([A-Z])~i' => '$1 $2',
         '~^([A-Z])([0-9])~i' => '$1 $2',
     ];
