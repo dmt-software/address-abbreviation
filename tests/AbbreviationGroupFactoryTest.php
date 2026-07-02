@@ -48,6 +48,7 @@ class AbbreviationGroupFactoryTest extends TestCase
             ['12 B', '12 B'],
             ['45 huis onderste bel', '45 H'],
             ['52 XIV', '52 14'],
+            ['45 I', '45 I'],
             ['4.20', '4 20'],
             ['2 bis', '2 BIS'],
             ['100 begane grond', '100 BG'],

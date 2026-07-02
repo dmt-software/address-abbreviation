@@ -35,6 +35,7 @@ final class AdditionAbbreviatorTest extends TestCase
             ['123 1 bis', '123 1BS'],
             ['123 12 bs', '123 12BS'],
             ['123 2 hoog', '123 2 hoog'],
+            ['24 A  ', '24 A'],
         ];
     }
 }

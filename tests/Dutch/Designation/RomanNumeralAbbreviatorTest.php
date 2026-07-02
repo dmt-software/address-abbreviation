@@ -22,6 +22,7 @@ class RomanNumeralAbbreviatorTest extends TestCase
             ['1-IX', '1-9'],
             ['3 X', '3 10'],
             ['19/XIV', '19/14'],
+            ['1 I with extra text', '1 1 with extra text'],
             // max 19
             ['22 XX', '22 XX'],
             ['40 XL', '40 XL'],
@@ -32,6 +33,8 @@ class RomanNumeralAbbreviatorTest extends TestCase
             ['X', 'X'],
             // numerals part of addition
             ['2 A-XII', '2 A-XII'],
+            // addition is no numeral but part of a letter-number addition
+            ['25 V 12', '25 V 12'],
         ];
     }
 }
