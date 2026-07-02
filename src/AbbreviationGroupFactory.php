@@ -151,6 +151,7 @@ class AbbreviationGroupFactory
         return new AbbreviationGroupAbbreviator([
             new DutchDesignation\SeparatorAbbreviator(),
             new DutchDesignation\TermAbbreviator(),
+            new DutchDesignation\RomanNumeralAbbreviator(),
             new DutchDesignation\AdditionAbbreviator(),
             new DutchDesignation\BAGStandardAbbreviator()
         ], maxLength: 1, cumulative: true);
