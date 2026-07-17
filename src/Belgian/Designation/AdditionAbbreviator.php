@@ -16,8 +16,8 @@ class AdditionAbbreviator implements AbbreviatorInterface
     {
         $this->replaceCallbacks = [
             '~^(\d+)\s*([\-/])\s*(\d+)~' => fn(array $m) => $m[1] . $m[2] . $m[3],
-            '~^(\d+)\s*([A-Z])\b~i' => fn(array $m) => $m[1] . strtoupper($m[2]),
-            '~^(\d+)\s*(bis)(\s?([0-9A-Z]))?\b~i' => fn(array $m) => $m[1] . ' ' . $m[2] . strtoupper($m[4]),
+            '~^(\d+)\s*([A-Z])\b~i' => fn(array $m) => $m[1] . strtoupper($m[2] ?? ''),
+            '~^(\d+)\s*(bis)(\s?([0-9A-Z]))?\b~i' => fn(array $m) => $m[1] . ' ' . $m[2] . strtoupper($m[4] ?? ''),
         ];
     }
 
