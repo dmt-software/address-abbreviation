@@ -7,9 +7,11 @@ namespace DMT\Address\Abbreviation;
 use DMT\Address\Abbreviation\Belgian\Designation as BelgianDesignation;
 use DMT\Address\Abbreviation\Belgian\Street as BelgianStreet;
 use DMT\Address\Abbreviation\Dutch\Designation as DutchDesignation;
+use DMT\Address\Abbreviation\Dutch\Organization as DutchOrganization;
 use DMT\Address\Abbreviation\Dutch\Street as DutchStreet;
 use DMT\Address\Abbreviation\General\AbbreviationGroupAbbreviator;
 use DMT\Address\Abbreviation\General\PunctuationAbbreviator;
+use DMT\Address\Abbreviation\General\WhitespaceAbbreviator;
 
 class AbbreviationGroupFactory
 {
@@ -155,5 +157,40 @@ class AbbreviationGroupFactory
             new DutchDesignation\AdditionAbbreviator(),
             new DutchDesignation\BAGStandardAbbreviator()
         ], maxLength: 1, cumulative: true);
+    }
+
+    /**
+     * Abbreviate a Dutch organization name.
+     */
+    public function getDutchOrganizationAbbreviationGroup(int $maxLength): AbbreviatorInterface
+    {
+        $governmentAbbreviator = new DutchOrganization\GovernmentAbbreviator();
+        $ministryAbbreviator = new DutchOrganization\MinistryAbbreviator();
+        $prepositionAbbreviator = new DutchOrganization\PrepositionAbbreviator();
+
+        return new AbbreviationGroupAbbreviator([
+            new AbbreviationGroupAbbreviator([new WhitespaceAbbreviator()], cumulative: true),
+            new AbbreviationGroupAbbreviator([
+                new AbbreviationGroupAbbreviator([
+                    $prepositionAbbreviator,
+                    $governmentAbbreviator,
+                ], maxLength: $maxLength),
+                new AbbreviationGroupAbbreviator([
+                    $ministryAbbreviator,
+                    $governmentAbbreviator,
+                    $prepositionAbbreviator,
+                ], maxLength: 1)
+            ], maxLength: $maxLength),
+                new AbbreviationGroupAbbreviator([
+                    new DutchOrganization\UniversityAbbreviator(),
+                    new DutchOrganization\EducationAbbreviator(),
+                    new DutchOrganization\AssociationAbbreviator(),
+                    new DutchOrganization\LegalFormAbbreviator(),
+                    new DutchOrganization\HealthcareAbbreviator(),
+                    new DutchOrganization\OrganizationTermAbbreviator(),
+                    new DutchOrganization\RegionAbbreviator(),
+                    $prepositionAbbreviator,
+            ], maxLength: $maxLength, cumulative: true)
+        ]);
     }
 }
